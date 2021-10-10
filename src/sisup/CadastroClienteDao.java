@@ -21,7 +21,7 @@ public class CadastroClienteDao {
         Connection con = Conexao.getInstancia();
         PreparedStatement ps;
         try {
-            String sql = "insert into cadPessoa (codigoPessoa, nomePessoa, tipoPessoa, apelidoPessoa, situacaoPessoa, enderecoPessoa,numeroPessoa, cepPessoa, codigoCidadePessoa, telefonePessoa, celularPessoa, emailPessoa) values (?,?,?,?,?,?,?,?,?,?,?,?)";
+            String sql = "insert into UpInfo_cadCli (UpInfo_cadCli_Codigo, UpInfo_cadCli_Razao, UpInfo_cadCli_Fantasia, UpInfo_cadCli_Tipo_Pessoa, UpInfo_cadCli_Situacao, UpInfo_cadCli_Endereco, UpInfo_cadCli_Numero, UpInfo_cadCli_Cep, UpInfo_cadCli_CodCidade, UpInfo_cadCli_Telefone, UpInfo_cadCli_Celular, UpInfo_cadCli_Email) values (?,?,?,?,?,?,?,?,?,?,?,?)";
             ps = con.prepareStatement(sql);
             ps.setInt(1, cliente.getCodigo());
             ps.setString(2, cliente.getNome());
@@ -35,7 +35,6 @@ public class CadastroClienteDao {
             ps.setString(10, cliente.getTelefone());
             ps.setString(11, cliente.getTelefoneCelular());
             ps.setString(12, cliente.getEmail());
-            System.out.println(ps);
             ps.execute();
 
             sql = "insert into cadCliente (codigoCliente, cpfCliente, rgCliente, nomePaiCliente, nomeMaeCliente, clientePagadorCliente, limiteCliente) values (?,?,?,?,?,?,?)";
@@ -47,7 +46,6 @@ public class CadastroClienteDao {
             ps.setString(5, cliente.getNomeMae());
             ps.setInt(6, cliente.getClientePagador());
             ps.setDouble(7, cliente.getLimite());
-            System.out.println(ps);
             ps.execute();
 
         } catch (SQLException e) {
@@ -58,15 +56,15 @@ public class CadastroClienteDao {
 
     }
 
-    public Integer procuraCpf(String cpf) throws Exception {
+    public String procuraCpf(String cpf) throws Exception {
 
         Connection con = Conexao.getInstancia();
-        PreparedStatement stmt = con.prepareStatement("Select * from cadCliente where cpfCliente= '" + cpf + "';");
+        PreparedStatement stmt = con.prepareStatement("Select * from UpInfo_cadCli where UpInfo_cadCli_Cpf= '" + cpf + "';");
         ResultSet rs = stmt.executeQuery();
-        Integer cod = null;
+        String cod = null;
         try {
             while (rs.next()) {
-                cod = rs.getInt("codigoCliente");
+                cod = rs.getString("UpInfo_cadCli_Cpf");
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Erro: Ocorreu um erro inexperado! Contate o Suporte Técnico! " + e.getMessage());

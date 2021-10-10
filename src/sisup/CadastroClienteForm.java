@@ -594,15 +594,10 @@ public class CadastroClienteForm extends CadBase {
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         try {
             Conexao conecta = new Conexao();
-            Integer ultimo = conecta.PegaUltimoRegistro("cadCliente", "codigoCliente");
+            Integer ultimo = conecta.PegaUltimoRegistro("UpInfo_cadCli", "UpInfo_cadCli_Codigo");
             EdtCodigo.setText(ultimo.toString());
         } catch (SQLException ex) {
-            Logger.getLogger(CadastroClienteForm
-
-.class  
-
-
-.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CadastroClienteForm.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_formWindowActivated
 
@@ -611,7 +606,7 @@ public class CadastroClienteForm extends CadBase {
     }//GEN-LAST:event_EdtCodCliPagActionPerformed
 
     private void EdtCpfFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_EdtCpfFocusLost
-        if (EdtCpf.getText().equals("..-") || EdtCpf.getText().equals(".../-")) {
+        if (EdtCpf.getText().equals("___.___.___-__") || EdtCpf.getText().equals("__.___.___.___/____-__")) {
             setAlwaysOnTop(false);
             JOptionPane.showMessageDialog(getFocusTraversalPolicy().getLastComponent(this), "Cpf/Cnpj não pode ser vazio, favor preencher!");
             setAlwaysOnTop(true);
@@ -621,10 +616,11 @@ public class CadastroClienteForm extends CadBase {
             if (RdbPfisica.isSelected()) {
                 String cpf = EdtCpf.getText().substring(0, 3) + EdtCpf.getText().substring(4, 7) + EdtCpf.getText().substring(8, 11) + EdtCpf.getText().substring(12, 14);
                 boolean valido = validaCpf.isCpf(cpf);
+                System.out.println(cpf);
                 if (valido) {
                     try {
-                        String cadastra = EdtCpf.getText();
-                        Integer verifica = clienteDao.procuraCpf(cadastra);
+                        String cadastra = cpf;
+                        String verifica = clienteDao.procuraCpf(cadastra);
                         if (verifica == null) {
                             EdtRg.requestFocus();
                         } else {
