@@ -18,8 +18,9 @@ public class Conexao {
 
     Conexao() throws java.sql.SQLException {
         try {
+            
             String conexao = "com.mysql.jdbc.Driver";
-            String url = "jdbc:mysql://127.0.0.1:3306/upinfo";
+            String url = "jdbc:mysql://127.0.0.1:3306/UpInfo?useSSL=false";
             String usuario = "root";
             String senha = "Marial@2";
             Class.forName(conexao);
@@ -61,6 +62,7 @@ public class Conexao {
     public int PegaUltimoRegistro(String tabela, String campo) throws SQLException {
         con.setAutoCommit(false);
         PreparedStatement stmt = con.prepareStatement("Select max(" + campo + ") as ultimocodigo from " + tabela);
+        System.out.println(stmt);
         ResultSet rs = stmt.executeQuery();
         Integer codigo = null;
         while (rs.next()) {
