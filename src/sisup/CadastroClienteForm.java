@@ -6,13 +6,11 @@
 package sisup;
 
 import java.awt.Component;
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-import jdk.nashorn.internal.ir.BreakNode;
 /**
  *
  * @author andre
@@ -110,6 +108,16 @@ public class CadastroClienteForm extends CadBase {
 
         EdtNome.setToolTipText("Nome/Razão Social do Cliente");
         EdtNome.setNextFocusableComponent(EdtApelido);
+        EdtNome.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                EdtNomeFocusLost(evt);
+            }
+        });
+        EdtNome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EdtNomeActionPerformed(evt);
+            }
+        });
 
         LblCpf.setText("CPF.:");
 
@@ -500,7 +508,7 @@ public class CadastroClienteForm extends CadBase {
 
         getAccessibleContext().setAccessibleDescription("Cadastro Cliente");
 
-        setSize(new java.awt.Dimension(810, 479));
+        setSize(new java.awt.Dimension(810, 416));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -509,7 +517,7 @@ public class CadastroClienteForm extends CadBase {
 
     }//GEN-LAST:event_RdbPJuridicaActionPerformed
     public void salvarRegistro() throws Exception {
-        cliente.setCodigo(Integer.parseInt(EdtCodigo.getText()));
+        cliente.setCodigo(Integer.valueOf(EdtCodigo.getText()));
         cliente.setNome(EdtNome.getText());
         cliente.setCpf(EdtCpf.getText());
         cliente.setRg(EdtRg.getText());
@@ -539,6 +547,15 @@ public class CadastroClienteForm extends CadBase {
     }
 
     private void RdbPfisicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RdbPfisicaActionPerformed
+        for (int i = 0; i < getContentPane().getComponentCount(); i++) {
+            //varre todos os componentes
+            Component c = getContentPane().getComponent(i);
+            if (c instanceof JTextField) {
+                //apaga os valores
+                JTextField field = (JTextField) c;
+                field.setText("");
+            }
+        }
         verificaBotoes();
     }//GEN-LAST:event_RdbPfisicaActionPerformed
 
@@ -549,6 +566,7 @@ public class CadastroClienteForm extends CadBase {
 
     private void BtoCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtoCancelarActionPerformed
         // TODO add your handling code here:
+        
         for (int i = 0; i < getContentPane().getComponentCount(); i++) {
             //varre todos os componentes
             Component c = getContentPane().getComponent(i);
@@ -592,6 +610,12 @@ public class CadastroClienteForm extends CadBase {
     }//GEN-LAST:event_EdtSituacaoActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        BtoAlterar.setEnabled(false);
+        BtoExcluir.setEnabled(false);
+        
+        
+        
+        
         try {
             Conexao conecta = new Conexao();
             Integer ultimo = conecta.PegaUltimoRegistro("UpInfo_cadCli", "UpInfo_cadCli_Codigo");
@@ -653,6 +677,14 @@ public class CadastroClienteForm extends CadBase {
 
         }
     }//GEN-LAST:event_EdtCpfFocusLost
+
+    private void EdtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EdtNomeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_EdtNomeActionPerformed
+
+    private void EdtNomeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_EdtNomeFocusLost
+        EdtNome.toString().toUpperCase();
+    }//GEN-LAST:event_EdtNomeFocusLost
     private void verificaBotoes() {
         if (RdbPfisica.isSelected()) {
             LblNome.setText("Nome.:");

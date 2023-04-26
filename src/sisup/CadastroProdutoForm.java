@@ -214,7 +214,7 @@ public class CadastroProdutoForm extends CadBase {
         LblCodigo.setText("Código.:");
 
         EdtCodigo.setToolTipText("Código Produto");
-        EdtCodigo.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        EdtCodigo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         EdtCodigo.setMaximumSize(new java.awt.Dimension(6, 20));
         EdtCodigo.setNextFocusableComponent(EdtDescricao);
         EdtCodigo.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -617,7 +617,7 @@ public class CadastroProdutoForm extends CadBase {
                         .addGap(0, 33, Short.MAX_VALUE))))
         );
 
-        setSize(new java.awt.Dimension(716, 503));
+        setSize(new java.awt.Dimension(854, 503));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
