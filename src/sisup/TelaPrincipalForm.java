@@ -82,8 +82,8 @@ public class TelaPrincipalForm extends javax.swing.JFrame {
         });
         TlbPrincipal.add(jButton2);
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sisup/icones/cadastroproduto2.png"))); // NOI18N
-        jButton3.setToolTipText("Cadastro Cliente");
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sisup/icones/cadastroproduto.png"))); // NOI18N
+        jButton3.setToolTipText("Cadastro Produtos");
         jButton3.setFocusable(false);
         jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton3.setMaximumSize(new java.awt.Dimension(40, 40));
@@ -95,6 +95,7 @@ public class TelaPrincipalForm extends javax.swing.JFrame {
             }
         });
         TlbPrincipal.add(jButton3);
+        jButton3.getAccessibleContext().setAccessibleDescription("Cadastro Produtos");
 
         MenuPrincipal.setText("Cadastro");
 
@@ -140,7 +141,7 @@ public class TelaPrincipalForm extends javax.swing.JFrame {
         MenuPrincipal.add(jMenu1);
         MenuPrincipal.add(jSeparator2);
 
-        mnusair.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.ALT_MASK));
+        mnusair.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.ALT_DOWN_MASK));
         mnusair.setText("Sair");
         mnusair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -155,6 +156,11 @@ public class TelaPrincipalForm extends javax.swing.JFrame {
 
         jCheckBoxMenuItem1.setSelected(true);
         jCheckBoxMenuItem1.setText("Barra de Status");
+        jCheckBoxMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBoxMenuItem1ActionPerformed(evt);
+            }
+        });
         Editar.add(jCheckBoxMenuItem1);
 
         chkbarrabotoes.setSelected(true);
@@ -180,7 +186,7 @@ public class TelaPrincipalForm extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(TlbPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(361, Short.MAX_VALUE))
+                .addContainerGap(537, Short.MAX_VALUE))
         );
 
         getAccessibleContext().setAccessibleName("FormPrincipal");
@@ -275,6 +281,10 @@ public class TelaPrincipalForm extends javax.swing.JFrame {
             cadfor.setVisible(true);
         }
     }//GEN-LAST:event_mnucadforActionPerformed
+
+    private void jCheckBoxMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxMenuItem1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCheckBoxMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments
